@@ -7,17 +7,20 @@ public class AIController : MonoBehaviour
 {
 
     public Transform target;
-    NavMeshAgent agent;
+    float speed = 0.1f;
+    private Vector3 vec;
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.position);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), 0.3f);
+
+        transform.position += transform.forward * speed;
     }
 }
