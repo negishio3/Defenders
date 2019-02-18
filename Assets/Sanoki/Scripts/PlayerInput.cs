@@ -65,7 +65,7 @@ public class PlayerInput : MonoBehaviour
         if(GamePad.GetState(playerNo, false).X)
         {
             if(weapon!=null)
-            weapon.GetComponent<iWeapon>().UseWeapon();
+            weapon.GetComponent<Nishiwaki.iWeapon>().AttackDown();
         }
         // アイテム使用？
         if(GamePad.GetState(playerNo, false).Y)
