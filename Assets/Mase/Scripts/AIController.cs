@@ -7,7 +7,7 @@ public class AIController : MonoBehaviour
 {
 
     public Transform target;
-    float speed = 0.1f;
+    float speed = 0.01f;
     private Vector3 vec;
 
     // Start is called before the first frame update
