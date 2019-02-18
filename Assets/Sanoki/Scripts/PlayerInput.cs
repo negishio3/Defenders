@@ -9,6 +9,8 @@ public class PlayerInput : MonoBehaviour
     Vector3 player_Distans;// プレイヤーの進む方向
     Vector3 player_Pos;// プレイヤーの座標
 
+    GameObject weapon;
+
     float speed = 10.0f;
 
     bool pauseFlg = false;
@@ -57,12 +59,13 @@ public class PlayerInput : MonoBehaviour
         // 攻撃
         if(GamePad.GetState(playerNo, false).B)
         {
-
+            
         }
         // 武器チェンジ？
         if(GamePad.GetState(playerNo, false).X)
         {
-
+            if(weapon!=null)
+            weapon.GetComponent<iWeapon>().UseWeapon();
         }
         // アイテム使用？
         if(GamePad.GetState(playerNo, false).Y)
@@ -70,4 +73,6 @@ public class PlayerInput : MonoBehaviour
 
         }
     }
+
+    
 }
