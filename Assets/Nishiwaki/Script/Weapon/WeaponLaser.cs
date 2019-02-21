@@ -16,7 +16,7 @@ namespace Nishiwaki
 
         //public BULLET_TYPE type;
 
-        public GameObject Laser;
+        GameObject Laser;
 
         private RaycastHit hit; //ヒットしたオブジェクト情報
         public float Range; // レーザーの長さ
