@@ -25,6 +25,9 @@ namespace Nishiwaki
         {
 
         }
+        public virtual void Attack()
+        {
 
+        }
     }
 }

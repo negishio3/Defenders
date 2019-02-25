@@ -8,5 +8,6 @@ namespace Nishiwaki
     {
         void AttackDown();
         void AttackUp();
+        void Attack();
     }
 }

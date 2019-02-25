@@ -7,15 +7,18 @@ namespace Nishiwaki
     public class Laser : MonoBehaviour
     {
         [SerializeField]
-        private BulletAsset bAsset = null;
+        private BulletAsset BAsset = null;
 
-        float Speed; //スピード
-        public float Power; //パワー
+        float Power; //パワー
 
+        public float power
+        {
+            get { return Power; }
+        }
         // Start is called before the first frame update
         void Start()
         {
-            Power = bAsset.Power;
+            Power = BAsset.Power;
         }
         
         // Update is called once per frame

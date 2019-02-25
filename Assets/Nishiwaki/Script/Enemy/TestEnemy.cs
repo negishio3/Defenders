@@ -6,11 +6,11 @@ namespace Nishiwaki
 {
     public class TestEnemy : MonoBehaviour
     {
-        float a;
+        float power;
         // Start is called before the first frame update
         void Start()
         {
-
+            var laser = new Laser();
         }
 
         // Update is called once per frame
@@ -22,14 +22,15 @@ namespace Nishiwaki
         {
             if (other.GetComponent<Laser>())
             {
-                Debug.Log("ダメージ");
+                power = other.GetComponent<Laser>().power;
 
-                a = other.GetComponent<Laser>().Power;
+                Debug.Log(power + "ダメージ");
             }
             else if (other.GetComponent<Bullet>())
             {
-                Debug.Log("ダメージ");
+                power = other.GetComponent<Bullet>().power;
 
+                Debug.Log(power + "ダメージ");
             }
         }
     }

@@ -7,16 +7,26 @@ namespace Nishiwaki
     public class Bullet : MonoBehaviour
     {
         [SerializeField]
-        private BulletAsset bAsset = null;
+        private BulletAsset BAsset = null;
 
         float Speed; //スピード
         float Power; //パワー
 
+        public float power
+        {
+            get { return Power; }
+        }
+        public float speed
+        {
+            get { return Speed; }
+        }
+
+
         // Start is called before the first frame update
         void Start()
         {
-            Speed = bAsset.Speed;
-            Power = bAsset.Power;
+            Speed = BAsset.Speed;
+            Power = BAsset.Power;
         }
 
         // Update is called once per frame

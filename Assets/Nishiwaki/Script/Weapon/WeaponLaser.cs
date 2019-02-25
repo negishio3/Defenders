@@ -6,6 +6,9 @@ namespace Nishiwaki
 {
     public class WeaponLaser : MonoBehaviour, iWeapon
     {
+        [SerializeField]
+        private WeaponLaserAsset LAsset = null;
+
         //public enum BULLET_TYPE
         //{
         //    LASER,
@@ -19,7 +22,8 @@ namespace Nishiwaki
         GameObject Laser;
 
         private RaycastHit hit; //ヒットしたオブジェクト情報
-        public float Range; // レーザーの長さ
+        public float Range; // Assetから取得した射程
+        public float LaserRange; // レーザーの長さ
         private Ray ray; //レイ
         public float move = 1.0f; // テスト用の武器の回転
         private bool flg = false; //射撃の有無
@@ -28,6 +32,7 @@ namespace Nishiwaki
         void Start()
         {
             Laser = transform.GetChild(0).gameObject; // 弾を探す
+            Range = LAsset.Range;
         }
 
         // Update is called once per frame
@@ -42,17 +47,17 @@ namespace Nishiwaki
                 //レイを可視化
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
                     Color.yellow);
-                if (hit.distance <= 100) Range = hit.distance + 0.5f;
+                if (hit.distance <= Range) LaserRange = hit.distance + 0.5f;
             }
             else
             {
-                Range = 100.0f;
+                LaserRange = Range;
             }
 
-            if (Input.GetKeyDown(KeyCode.Z)) flg = true;
-            else if (Input.GetKeyUp(KeyCode.Z))  flg = false;
+            if (Input.GetKeyDown(KeyCode.Z)) flg = true; // テスト用
+            else if (Input.GetKeyUp(KeyCode.Z))  flg = false; // テスト用
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow)) // テスト用
             {
                 transform.Rotate(new Vector3(0, 1, 0));
             }
@@ -72,5 +77,6 @@ namespace Nishiwaki
         {
             flg = false;
         }
+        public virtual void Attack() { }
     }
 }

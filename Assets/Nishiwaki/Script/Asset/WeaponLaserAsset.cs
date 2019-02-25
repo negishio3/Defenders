@@ -8,6 +8,8 @@ namespace Nishiwaki
 
     public class WeaponLaserAsset : ScriptableObject
     {
-
+        public float Range;
+        public float OverHeat;
+        public float CoolTime;
     }
 }
