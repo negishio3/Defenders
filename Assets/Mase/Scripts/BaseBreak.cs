@@ -6,7 +6,7 @@ public class BaseBreak : MonoBehaviour
 {
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間
-    public float movespeed;
+    public float movespeed;          //移動速度
 
     // Start is called before the first frame update
     void Start()
