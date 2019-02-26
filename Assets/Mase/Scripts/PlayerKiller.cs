@@ -18,6 +18,7 @@ public class PlayerKiller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //経過時間を取得
         searchTime += Time.deltaTime;
 
