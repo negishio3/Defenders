@@ -5,26 +5,34 @@ using GamepadInput;
 
 public class PlayerInput : MonoBehaviour
 {
+    public int characterNum;// キャラクターの番号
     public GamePad.Index playerNo;// コントローラーの番号
     Vector3 player_Distans;// プレイヤーの進む方向
     Vector3 player_Pos;// プレイヤーの座標
 
-    GameObject weapon;
+    GameObject weapon;// 現在所持している武器
 
-    float speed = 10.0f;
+    float speed = 10.0f;// 移動速度
 
-    bool pauseFlg = false;
+    Color panelColor;
 
     void Start()
     {
+        playerNo = (GamePad.Index)EntrySystem.playerNumber[characterNum - 1];
         player_Pos = transform.position;// 座標の更新
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GamePad.GetButtonDown(GamePad.Button.Start,playerNo)) pauseFlg = !pauseFlg;
-        if (pauseFlg) return;
+        if (GamePad.GetButtonDown(GamePad.Button.Start, playerNo))
+        {
+            float color = Data.pauseFlg ? 0 : 0.5f;
+            panelColor = new Color(0, 0, 0, color);
+            Data.pauseFlg = !Data.pauseFlg;
+            Debug.Log(Data.pauseFlg);
+        }
+        if (Data.pauseFlg) return;
         StickInput();
     }
     // スティックのインプット
@@ -54,18 +62,18 @@ public class PlayerInput : MonoBehaviour
         // ダッシュ？
         if (GamePad.GetState(playerNo, false).A)
         {
-
+            
         }
         // 攻撃
         if(GamePad.GetState(playerNo, false).B)
         {
-            
+            if (weapon != null)
+                weapon.GetComponent<Nishiwaki.iWeapon>().AttackDown();
         }
-        // 武器チェンジ？
+        // 武器チェンジ
         if(GamePad.GetState(playerNo, false).X)
         {
-            if(weapon!=null)
-            weapon.GetComponent<iWeapon>().UseWeapon();
+
         }
         // アイテム使用？
         if(GamePad.GetState(playerNo, false).Y)
@@ -74,5 +82,10 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    void OnGUI()
+    {
+        GUI.color = panelColor;//設定されている色にする
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);//が面大の幕を表示
+    }
     
 }
