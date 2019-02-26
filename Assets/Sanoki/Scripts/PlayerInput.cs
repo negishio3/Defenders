@@ -64,8 +64,8 @@ public class PlayerInput : MonoBehaviour
         // 武器チェンジ？
         if(GamePad.GetState(playerNo, false).X)
         {
-            if(weapon!=null)
-            weapon.GetComponent<iWeapon>().UseWeapon();
+            //if(weapon!=null)
+           // weapon.GetComponent<iWeapon>().UseWeapon();
         }
         // アイテム使用？
         if(GamePad.GetState(playerNo, false).Y)
