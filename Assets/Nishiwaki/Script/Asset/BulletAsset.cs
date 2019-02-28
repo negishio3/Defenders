@@ -17,7 +17,6 @@ namespace Nishiwaki
         }
 
         public BULLET_TYPE type;
-        public float Speed;
         public float Power;
     }
 }

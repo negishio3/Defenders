@@ -9,23 +9,16 @@ namespace Nishiwaki
         [SerializeField]
         private BulletAsset BAsset = null;
 
-        float Speed; //スピード
         float Power; //パワー
 
         public float power
         {
             get { return Power; }
         }
-        public float speed
-        {
-            get { return Speed; }
-        }
-
 
         // Start is called before the first frame update
         void Start()
         {
-            Speed = BAsset.Speed;
             Power = BAsset.Power;
         }
 
@@ -36,7 +29,12 @@ namespace Nishiwaki
         }
         void OnTriggerEnter(Collider other)
         {
-            Debug.Log("弾当たったよ");
+            if (other.GetComponent<TestEnemy>()) // 「TestEnemy」をティウスが作ったやつに変える
+            {
+                Debug.Log("弾当たったよ");
+
+                Destroy(gameObject);
+            }
         }
     }
 }

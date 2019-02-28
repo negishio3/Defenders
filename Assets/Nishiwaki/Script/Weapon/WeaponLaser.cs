@@ -7,32 +7,25 @@ namespace Nishiwaki
     public class WeaponLaser : MonoBehaviour, iWeapon
     {
         [SerializeField]
-        private WeaponLaserAsset LAsset = null;
-
-        //public enum BULLET_TYPE
-        //{
-        //    LASER,
-        //    BIG,
-        //    NORMAL,
-        //    SMALL
-        //}
-
-        //public BULLET_TYPE type;
+        private WeaponLaserAsset WLAsset = null;
 
         GameObject Laser;
 
         private RaycastHit hit; //ヒットしたオブジェクト情報
-        public float Range; // Assetから取得した射程
-        public float LaserRange; // レーザーの長さ
+        private float LaserRange; // レーザーの長さ
         private Ray ray; //レイ
-        public float move = 1.0f; // テスト用の武器の回転
+        private float move = 1.0f; // テスト用の武器の回転
         private bool flg = false; //射撃の有無
+
+        private float Range; // Assetから取得した射程
+        private float OverHeat; // Assetから取得した
+        private float CoolTime; // Assetから取得した
 
         // Start is called before the first frame update
         void Start()
         {
-            Laser = transform.GetChild(0).gameObject; // 弾を探す
-            Range = LAsset.Range;
+            Laser = transform.GetChild(0).gameObject; // 子になっている弾を探す
+            Range = WLAsset.Range;
         }
 
         // Update is called once per frame

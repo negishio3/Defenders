@@ -8,8 +8,9 @@ namespace Nishiwaki
 
     public class WeaponRangedAsset : ScriptableObject
     {
-        public GameObject BulletObject;
+        public GameObject BulletPrefab;
         public float Rate;
         public int Magazine;
+        public int ShotSpeed;
     }
 }

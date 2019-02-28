@@ -28,7 +28,10 @@ namespace Nishiwaki
         }
         void OnTriggerEnter(Collider other)
         {
-            Debug.Log("レーザー当たったよ");
+            if (other.GetComponent<TestEnemy>()) // 「TestEnemy」をティウスが作ったやつに変える
+            {
+                Debug.Log("レーザー当たったよ");
+            }
         }
     }
 }
