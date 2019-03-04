@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Nishiwaki
 {
-    public interface iWeapon
+    public interface iBullet
     {
-        void AttackDown();
-        void AttackUp();
+        void BulletCreate(Transform transform);
     }
 }

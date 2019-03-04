@@ -64,6 +64,11 @@ public class PlayerInput : MonoBehaviour
         // 武器チェンジ？
         if(GamePad.GetState(playerNo, false).X)
         {
+<<<<<<< HEAD
+            if(weapon!=null)
+            weapon.GetComponent<Nishiwaki.iWeapon>().AttackDown();
+=======
+>>>>>>> master
         }
         // アイテム使用？
         if(GamePad.GetState(playerNo, false).Y)
