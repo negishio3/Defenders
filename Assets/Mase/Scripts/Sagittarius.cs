@@ -8,6 +8,8 @@ public class Sagittarius : MonoBehaviour
     public GameObject bullet;
     public float bulletspeed;
     public Transform muzzle;
+    private float lastAttackTime;
+    private float attackInterval = 2f;
 
 
     // Start is called before the first frame update
@@ -21,17 +23,27 @@ public class Sagittarius : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Quaternion targetRotation = 
+        Quaternion targetRotation =
             Quaternion.LookRotation(colony.position - transform.position);
-        transform.rotation = 
+        transform.rotation =
             Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Time.time> lastAttackTime + attackInterval)
         {
+            // 弾丸の複製
             GameObject bullets = Instantiate(bullet) as GameObject;
+
             Vector3 force;
 
             force = this.gameObject.transform.forward * bulletspeed;
+
+            // Rigidbodyに力を加えて発射
+            bullets.GetComponent<Rigidbody>().AddForce(force);
+
+            // 弾丸の位置を調整
+            bullets.transform.position = muzzle.position;
+
+            lastAttackTime = Time.time;
         }
     }
 }
