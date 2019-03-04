@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253ad553cd08f4f4780a8a78c63db3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bAsset: {fileID: 11400000, guid: c02cae5a21eb4ec438d6f666cc4a70ae, type: 2}
+  BAsset: {fileID: 11400000, guid: c02cae5a21eb4ec438d6f666cc4a70ae, type: 2}
 --- !u!1 &4775430179003309114
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,5 +241,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd422230b8d1ad41a3fcd63d911a486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 0
-  move: 0
+  WLAsset: {fileID: 11400000, guid: b4b46738952ddb64497ff588044c95c9, type: 2}

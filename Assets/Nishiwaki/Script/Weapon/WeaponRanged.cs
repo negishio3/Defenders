@@ -35,7 +35,7 @@ namespace Nishiwaki
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKey(KeyCode.Z))
+            if (Input.GetKey(KeyCode.Z)) // テスト用
             {
                 Attack();
             }
@@ -62,7 +62,7 @@ namespace Nishiwaki
             if (CoolTime <= 0)
             {
                 GameObject Bullets = Instantiate(BulletPrefab) as GameObject; // 弾を生成
-                GameObject Cartridges = Instantiate(Cartridge) as GameObject;
+                GameObject Cartridges = Instantiate(Cartridge) as GameObject; // 薬莢を生成
 
                 Bullets.transform.position = Muzzle.transform.position; // 「Muzzle」の位置に移動
                 Cartridges.transform.position = CartridgeExit.transform.position; // 「CartridgeExit」の位置に移動

@@ -11,7 +11,7 @@ namespace Nishiwaki
 
         float Power; //パワー
 
-        public float power
+        public float power // 敵にダメージを伝える
         {
             get { return Power; }
         }
@@ -32,9 +32,9 @@ namespace Nishiwaki
             if (other.GetComponent<TestEnemy>()) // 「TestEnemy」をティウスが作ったやつに変える
             {
                 Debug.Log("弾当たったよ");
-
-                Destroy(gameObject);
             }
+
+            Destroy(gameObject);
         }
     }
 }

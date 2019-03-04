@@ -14,7 +14,6 @@ namespace Nishiwaki
         private RaycastHit hit; //ヒットしたオブジェクト情報
         private float LaserRange; // レーザーの長さ
         private Ray ray; //レイ
-        private float move = 1.0f; // テスト用の武器の回転
         private bool flg = false; //射撃の有無
 
         private float Range; // Assetから取得した射程
@@ -24,7 +23,8 @@ namespace Nishiwaki
         // Start is called before the first frame update
         void Start()
         {
-            Laser = transform.GetChild(0).gameObject; // 子になっている弾を探す
+            //Laser = transform.GetChild(0).gameObject; // 子になっている弾を探す
+            Laser = transform.Find("LaserBulletMuzzle").gameObject; // 子のMuzzleを参照
             Range = WLAsset.Range;
         }
 
@@ -55,11 +55,11 @@ namespace Nishiwaki
                 transform.Rotate(new Vector3(0, 1, 0));
             }
 
-            if (flg) Laser.transform.localScale = new Vector3(1, 1, Range);
+            if (flg) Laser.transform.localScale = new Vector3(1, 1, LaserRange); 
             else
             {
-                Range = 0.5f;
-                Laser.transform.localScale = new Vector3(1, 1, Range);
+                LaserRange = 0.5f;
+                Laser.transform.localScale = new Vector3(1, 1, LaserRange);
             }
         }
         public void AttackDown()
