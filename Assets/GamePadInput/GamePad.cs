@@ -42,8 +42,7 @@ namespace GamepadInput
         /// <param name="raw">if raw is false then the controlIndex will be returned with a deadspot</param>
         /// <returns></returns>
         public static Vector2 GetAxis(Axis axis, Index controlIndex, bool raw = false)
-        {
-
+        { 
             string xName = "", yName = "";
             switch (axis)
             {

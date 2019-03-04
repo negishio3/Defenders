@@ -7,15 +7,16 @@ public class EntrySystem : SingletonMonoBehaviour<EntrySystem>
 {
     public enum PLAYERNUM
     {
+        Any,
         ONE,
         TWO,
         THREE,
         FOUR
     }
 
-    public static int[] playerNumber = { -1, -1, -1, -1 };
+    public static int[] playerNumber = { 1, 2, 3, 4 };
 
-    int playerCount = 0;
+    public static int playerCount = 0;
 
     float[] rotations = { 0, 0, 0, 0 };
 
@@ -80,7 +81,7 @@ public class EntrySystem : SingletonMonoBehaviour<EntrySystem>
             playerNumber[playerCount] = (int)_player;
 
             Debug.Log((PLAYERNUM)playerCount + " player 登録完了");
-
+            Debug.Log(playerNumber[0] + ":" + playerNumber[1] + ":" + playerNumber[2] + ":" + playerNumber[3]);
             playerCount++;
         }
     }
