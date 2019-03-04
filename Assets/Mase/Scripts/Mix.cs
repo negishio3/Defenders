@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIGenerator : MonoBehaviour
+public class Mix : MonoBehaviour
 {
-    public GameObject obj;//生成するオブジェクト
-
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +13,6 @@ public class AIGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(obj,(this.transform.position), Quaternion.identity);
-        }
+        
     }
 }
