@@ -16,7 +16,7 @@ public class EntrySystem : SingletonMonoBehaviour<EntrySystem>
 
     public static int[] playerNumber = { 1, 2, 3, 4 };
 
-    int playerCount = 0;
+    public static int playerCount = 0;
 
     float[] rotations = { 0, 0, 0, 0 };
 

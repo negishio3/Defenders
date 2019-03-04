@@ -7,6 +7,12 @@ using UnityEngine;
 public class ScoreSystem : SingletonMonoBehaviour<ScoreSystem>
 {
     private List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト
+    int rankingNum;
+
+    void Start()
+    {
+        rankingNum = -1;
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,21 +37,28 @@ public class ScoreSystem : SingletonMonoBehaviour<ScoreSystem>
     /// <param name="score">スコア</param>
     public void RankingSort(int score)
     {
+        bool change = false;
         for (int i = 0; i < Data.ranking.Length; i++)
         {
             if (score > Data.ranking[i])
             {
+                if (!change)
+                {
+                    Debug.Log("通った");
+                    change = true;
+                    rankingNum = i;
+                }
                 int x = Data.ranking[i];
                 Data.ranking[i] = score;
                 score = x;
             }
         }
 
-        for (int i = 0; i < Data.ranking.Length; i++)
-        {
-            Debug.Log((i + 1) + "位 : " + Data.ranking[i]);
+        //for (int i = 0; i < Data.ranking.Length; i++)
+        //{
+        //    Debug.Log((i + 1) + "位 : " + Data.ranking[i]);
 
-        }
+        //}
     }
 
     /// <summary>
@@ -92,5 +105,10 @@ public class ScoreSystem : SingletonMonoBehaviour<ScoreSystem>
         sw.Close();
 
         Debug.Log("セーブしました。");
+    }
+
+    public int RankingNum()
+    {
+        return rankingNum;
     }
 }

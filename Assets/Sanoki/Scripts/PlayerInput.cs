@@ -19,6 +19,8 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         playerNo = (GamePad.Index)EntrySystem.playerNumber[characterNum - 1];
+        if ((int)playerNo == -1)
+            gameObject.SetActive(false);
         player_Pos = transform.position;// 座標の更新
     }
 
@@ -60,23 +62,23 @@ public class PlayerInput : MonoBehaviour
     void ButtonInput()
     {
         // ダッシュ？
-        if (GamePad.GetState(playerNo, false).A)
+        if (GamePad.GetButtonDown(GamePad.Button.A, playerNo))
         {
             
         }
         // 攻撃
-        if(GamePad.GetState(playerNo, false).B)
+        if(GamePad.GetButtonDown(GamePad.Button.B, playerNo))
         {
             if (weapon != null)
                 weapon.GetComponent<Nishiwaki.iWeapon>().AttackDown();
         }
         // 武器チェンジ
-        if(GamePad.GetState(playerNo, false).X)
+        if(GamePad.GetButtonDown(GamePad.Button.X, playerNo))
         {
 
         }
         // アイテム使用？
-        if(GamePad.GetState(playerNo, false).Y)
+        if(GamePad.GetButtonDown(GamePad.Button.Y, playerNo))
         {
 
         }

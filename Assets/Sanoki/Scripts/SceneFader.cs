@@ -20,6 +20,7 @@ public class SceneFader : MonoBehaviour
 
     void Start()
     {
+        isFade = true;
         fade = 0;//シーンの読み込み時にフェードアウトさせる
         StartCoroutine(SceneFade(fadeSpeed, false));//フェードさせる
     }
