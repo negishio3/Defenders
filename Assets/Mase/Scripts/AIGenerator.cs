@@ -5,6 +5,8 @@ using UnityEngine;
 public class AIGenerator : MonoBehaviour
 {
     public GameObject obj;//生成するオブジェクト
+    private float lastAttackTime;
+    private float attackInterval = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -15,9 +17,11 @@ public class AIGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Time.time > lastAttackTime + attackInterval)
         {
             Instantiate(obj,(this.transform.position), Quaternion.identity);
+
+            lastAttackTime = Time.time;
         }
     }
 }

@@ -43,7 +43,7 @@ public class Sagittarius : MonoBehaviour
             // 弾丸の位置を調整
             bullets.transform.position = muzzle.position;
 
-            lastAttackTime = Time.time;
+           lastAttackTime = Time.time;
         }
     }
 }
