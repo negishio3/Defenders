@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Nishiwaki
 {
-    public class WeaponRanged : MonoBehaviour, iWeapon
+    public class WeaponRanged : Weapon
     {
         [SerializeField]
         private WeaponRangedAsset WRAsset = null;
@@ -14,9 +14,9 @@ namespace Nishiwaki
         public GameObject Cartridge;
         GameObject CartridgeExit;
 
-        private float Rate;
-        private int Magazine;
-        private int ShotSpeed;
+        float Rate;
+        int Magazine;
+        int ShotSpeed;
 
         float CoolTime;
 
@@ -45,15 +45,7 @@ namespace Nishiwaki
                 CoolTime -= Time.deltaTime;
             }
         }
-        public virtual void AttackDown()
-        {
-
-        }
-        public virtual void AttackUp()
-        {
-
-        }
-        public void Attack()
+        public override void Attack()
         {
             BulletCreate();
         }

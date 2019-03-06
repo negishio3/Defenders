@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Nishiwaki
 {
-    public class WeaponMelee : MonoBehaviour, iWeapon
+    public class WeaponMelee : Weapon
     {
         [SerializeField]
         private WeaponMeleeAsset WMAsset = null;
@@ -30,23 +30,25 @@ namespace Nishiwaki
         }
         void OnTriggerEnter(Collider other)
         {
+            base.ColorChangeBlue();
             if (other.GetComponent<TestEnemy>()) // 「TestEnemy」をティウスが作ったやつに変える
             {
                 Debug.Log("剣当たったよ");
             }
         }
 
-        public virtual void AttackDown()
+        public override void AttackDown()
         {
 
         }
-        public virtual void AttackUp()
+        public override void AttackUp()
         {
 
         }
-        public virtual void Attack()
+        public override void Attack()
         {
 
         }
+        
     }
 }
