@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Nishiwaki
 {
 
-    public class WeaponMine : MonoBehaviour
+    public class WeaponMine : Weapon
     {
         [SerializeField]
         private WeaponMineAsset WMineAsset = null;
@@ -33,17 +33,9 @@ namespace Nishiwaki
                 AttackDown();
             }
         }
-        public void AttackDown()
+        public override void AttackDown()
         {
             MinePut();
-        }
-        public virtual void AttackUp()
-        {
-
-        }
-        public virtual void Attack()
-        {
-
         }
         void MinePut()
         {
