@@ -44,7 +44,6 @@ public class ScoreSystem : SingletonMonoBehaviour<ScoreSystem>
             {
                 if (!change)
                 {
-                    Debug.Log("通った");
                     change = true;
                     rankingNum = i;
                 }
