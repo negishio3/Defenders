@@ -22,13 +22,6 @@ namespace Nishiwaki
         }
         private void OnTriggerEnter(Collider other)
         {
-
-            //if (other.GetComponent<Laser>()) // 相手に「Laser」scriptがついているとき
-            //{
-            //    power = other.GetComponent<Laser>().power; // script「Laser」のpowerを参照
-
-            //    Debug.Log(power + "ダメージ");
-            //}
             if (other.GetComponent<Bullet>()) // 相手に「Bullet」scriptがついているとき
             {
                 power = other.GetComponent<Bullet>().power; // script「Bullet」のpowerを参照
@@ -47,6 +40,17 @@ namespace Nishiwaki
 
                 Debug.Log(power + "ダメージ");
             }
+<<<<<<< HEAD
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.GetComponent<Laser>()) // 相手に「Laser」scriptがついているとき
+            {
+                power = other.GetComponent<Laser>().power; // script「Laser」のpowerを参照
+
+                Debug.Log(power + "ダメージ");
+            }
+=======
             //switch (ClassName)
             //{
             //    case "Laser":
@@ -58,6 +62,7 @@ namespace Nishiwaki
             //        Debug.LogError("書いてないよー");
             //        break;
             //}
+>>>>>>> master
         }
     }
 }

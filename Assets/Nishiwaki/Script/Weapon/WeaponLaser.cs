@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Nishiwaki
 {
-    public class WeaponLaser : MonoBehaviour, iWeapon
+    public class WeaponLaser : Weapon
     {
         [SerializeField]
         private WeaponLaserAsset WLAsset = null;
@@ -62,14 +62,13 @@ namespace Nishiwaki
                 Laser.transform.localScale = new Vector3(1, 1, LaserRange);
             }
         }
-        public void AttackDown()
+        public override void AttackDown()
         {
             flg = true;
         }
-        public void AttackUp()
+        public override void AttackUp()
         {
             flg = false;
         }
-        public virtual void Attack() { }
     }
 }

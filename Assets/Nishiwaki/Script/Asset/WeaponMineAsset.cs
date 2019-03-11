@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Nishiwaki
 {
-    [CreateAssetMenu(fileName = "NewWeaponMineAsset", menuName = "Weapon/Item/Create Mine Asset")]
+    [CreateAssetMenu(fileName = "NewWeaponMineAsset", menuName = "Item/Mine/Create WeaponMine Asset")]
 
     public class WeaponMineAsset : ScriptableObject
     {
