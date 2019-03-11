@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Colony
   - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ namespace Nishiwaki
 {
     public class Weapon : MonoBehaviour, iWeapon
     {
+        Rigidbody rigid;
         // Start is called before the first frame update
         void Start()
         {
@@ -26,6 +27,9 @@ namespace Nishiwaki
             if (other.gameObject.tag == "Player")
             {
                 ColorChangeBlue();
+            }
+            else if (other.gameObject.tag == "Ground")
+            { 
             }
         }
         private void OnTriggerExit(Collider other)
