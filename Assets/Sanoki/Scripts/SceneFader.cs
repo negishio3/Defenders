@@ -25,6 +25,27 @@ public class SceneFader : MonoBehaviour
         StartCoroutine(SceneFade(fadeSpeed, false));//フェードさせる
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SceneChange("Title");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SceneChange("Entry");
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SceneChange("Game");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneChange("Result");
+        }
+    }
+
+
     /// <summary>
     /// 引数のシーンにフェードして遷移する
     /// </summary>

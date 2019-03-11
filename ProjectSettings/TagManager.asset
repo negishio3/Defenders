@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Colony
-  - Enemy
-  - Ground
+  - Weapon
+  - Item
+  - MyWeapon
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - Weapon
+  - Ground
+  - Player
   - 
   - 
   - 

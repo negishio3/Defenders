@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Data : MonoBehaviour
 {
-    public static int score = 0;// 敵の撃破数スコア
+    public static int score = 0;// スコア
+    public static int destroyEnemyCount = 0;// 敵の撃破数スコア
 
     public const float COLONY_VALUE_MAX = 10000;//拠点体力初期値
     public static float colonyValue = 0;// 拠点耐久値

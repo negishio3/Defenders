@@ -59,7 +59,7 @@ public class ResultSystem : MonoBehaviour
         score = 0;//現在スコアをリセット
 
         currentScore.text = "Score : " + (int)score;// スコアのテキストを更新
-        addScore_Text[0].text = "撃破 : " + Data.score+"体";// 撃破数のテキストを更新
+        addScore_Text[0].text = "撃破 : " + Data.destroyEnemyCount+"体";// 撃破数のテキストを更新
 
         colonyValue = (int)(Data.colonyValue / Data.COLONY_VALUE_MAX * 100);// 拠点の耐久値を計算
         addScore_Text[1].text = "拠点(耐久値) : " 
@@ -150,7 +150,7 @@ public class ResultSystem : MonoBehaviour
     {
         resultState = ResultState.RESULT;
         ActivStateChenge(addScore_GameObj[0]);
-        StartCoroutine(AddScore(Data.score * 100));// 撃破数から計算して加算
+        StartCoroutine(AddScore(Data.score));// 撃破数から計算して加算
 
         yield return new WaitForSeconds(1.5f);
 
@@ -215,5 +215,6 @@ public class ResultSystem : MonoBehaviour
         Data.score = 0;
         Data.colonyValue = 0;
         Data.waveCout = 0;
+        Data.destroyEnemyCount = 0;
     }
 }
