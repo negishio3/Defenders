@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlaeyrYellow
+  m_Name: PlayerYellowMat
   m_Shader: {fileID: 4800000, guid: ae4b76a82c9488b4b80d7f705fe76ef6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3416452b516a28345a6b0c452e4e6679, type: 3}
+        m_Texture: {fileID: 2800000, guid: a3446d4a4d56eb44fa75c549d7bd4ab1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
