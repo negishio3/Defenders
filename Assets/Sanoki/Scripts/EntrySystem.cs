@@ -160,7 +160,7 @@ public class EntrySystem : SingletonMonoBehaviour<EntrySystem>
         {
             if (_number == (int)_player)
             {
-                sceneFader.SceneChange("Template");
+                sceneFader.SceneChange("Game");
             }
         }
     }

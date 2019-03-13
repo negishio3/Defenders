@@ -8,6 +8,8 @@ TagManager:
   - Weapon
   - Item
   - MyWeapon
+  - Ground
+  - DownPlayer
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Weapon
   - Ground
   - Player
-  - 
+  - Bullet
   - 
   - 
   - 

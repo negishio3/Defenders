@@ -17,17 +17,24 @@ public class PlayerInput : MonoBehaviour
 
     Color panelColor;//ポーズ時に表示されるパネルの色
 
-    bool itemFlg = false;//アイテムに触れているかの判定
+    bool freezeFlg = false;//アイテムに触れているかの判定
 
     bool pushFlg = false;//長押しの判定
 
     float pushTime = 0.0f;//ボタン長押し時間の取得
+
+    float player_HP;
+    const float PLAYER_HPMAX = 1000.0f;
+
+    public Image gauge_HP;
+    public GameObject charactorModel;
 
     //public Text time;
 
 
     void Start()
     {
+        player_HP = PLAYER_HPMAX;
         pushFlg = false;//アイテム使用中でなくする
         playerNo = (GamePad.Index)EntrySystem.playerNumber[characterNum - 1];//このキャラクターを使用するコントローラーの番号を取得
         if ((int)playerNo == -1)//もしAnyなら
@@ -47,7 +54,8 @@ public class PlayerInput : MonoBehaviour
             Data.pauseFlg = !Data.pauseFlg;//ポーズフラグを切り替え
             //Debug.Log(Data.pauseFlg);
         }
-        if (Data.pauseFlg||pushFlg) return;//ポーズ中なら入力をぶっち
+        if (Data.pauseFlg || pushFlg) return;//ポーズ中なら入力をぶっち
+        if (player_HP <= 0) return;
         StickInput();//スティックのインプットを取得
     }
     // スティックのインプット
@@ -65,7 +73,7 @@ public class PlayerInput : MonoBehaviour
         if (LStickAxisX > 0 || LStickAxisX < 0 || LStickAxisY > 0 || LStickAxisY < 0)
         {
             Vector3 direction = new Vector3(LStickAxisX, 0, LStickAxisY);// スティックの入力
-            transform.rotation = Quaternion.LookRotation(direction);//回転
+            charactorModel.transform.rotation = Quaternion.LookRotation(direction);//回転
         }
 
         player_Pos += player_Distans * Time.deltaTime * speed;// 移動
@@ -77,13 +85,24 @@ public class PlayerInput : MonoBehaviour
         // ダッシュ？
         if (GamePad.GetButtonDown(GamePad.Button.A, playerNo))
         {
-            
+            PlayerDamage(1000);
         }
         // 攻撃
-        if(GamePad.GetButtonDown(GamePad.Button.B, playerNo))
+        if (GamePad.GetButtonDown(GamePad.Button.B, playerNo))
         {
             if (weapon != null)
+            {
                 weapon.GetComponent<Nishiwaki.iWeapon>().AttackDown();//現在所持している武器の攻撃関数を呼び出し
+                weapon.GetComponent<Nishiwaki.iWeapon>().Attack();//現在所持している武器の攻撃関数を呼び出し
+            }
+        }
+        if (GamePad.GetButtonUp(GamePad.Button.B, playerNo))
+        {
+            if (weapon != null)
+            {
+                weapon.GetComponent<Nishiwaki.iWeapon>().AttackUp();//現在所持している武器の攻撃関数を呼び出し
+                weapon.GetComponent<Nishiwaki.iWeapon>().AttackUp();//現在所持している武器の攻撃関数を呼び出し
+            }
         }
         // 武器チェンジ
         //if(GamePad.GetButtonDown(GamePad.Button.X, playerNo))
@@ -94,7 +113,7 @@ public class PlayerInput : MonoBehaviour
         //    }
         //}
         // アイテム使用？
-        if (GamePad.GetButton(GamePad.Button.Y, playerNo) && itemFlg)
+        if (GamePad.GetButton(GamePad.Button.Y, playerNo) && freezeFlg)
         {
             pushFlg = true;//アイテム使用中に設定
             ButtonPush();//ボタンを長押しする
@@ -108,7 +127,6 @@ public class PlayerInput : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        itemFlg = true;//アイテムに触れている判定
         switch (other.tag)//触れているアイテムのタグ
         {
             case "Weapon"://武器なら
@@ -121,7 +139,8 @@ public class PlayerInput : MonoBehaviour
                     {
                         rb = weapon.GetComponent<Rigidbody>();//Rigidbodyコンポーネントを取得
                         rb.useGravity = true;//useGravityをtrueに
-                        weapon.transform.localPosition = new Vector3(1.0f,0.0f,0.0f);//武器を捨てる
+                        rb.constraints = RigidbodyConstraints.None;
+                        weapon.transform.localPosition = new Vector3(1.0f, 0.0f, 0.0f);//武器を捨てる
                         weapon.transform.parent = null;//親子関係の切り離し
                     }
                     weapon = other.gameObject;
@@ -130,32 +149,52 @@ public class PlayerInput : MonoBehaviour
                     rb = weapon.GetComponent<Rigidbody>();
                     bc.isTrigger = true;
                     rb.useGravity = false;
-                    rb.freezeRotation = true;
-                    other.transform.parent = transform;
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                    other.transform.parent = charactorModel.transform;
                     other.transform.localPosition = Vector3.zero;
                     other.transform.localRotation = Quaternion.identity;
+                    freezeFlg = false;
                 }
                 break;
             case "Item":
+                freezeFlg = true;//アイテムに触れている判定
                 if (pushTime >= 3.0f)
                 {
                     //アイテムを使用する処理
                     other.GetComponent<I_Item>().UseItem(this);
-                    itemFlg = false;
+                    freezeFlg = false;
                 }
                 break;
             case "Colony":
+                freezeFlg = true;
+                if (pushTime >= 5.0f)
+                {
+                    ColonySystem.Instance.ColonyRecovery(500);
+                    pushTime = 0.0f;
+                    freezeFlg = false;
+                }
+                break;
+            case "DownPlayer":
+                freezeFlg = true;
+                if (pushTime >= 3.0f)
+                {
+                    PlayerInput pi = other.GetComponent<PlayerInput>();
+                    pi.PlayerRecovery(500);
+                    other.tag = "Player";
+                    pushTime = 0.0f;
+                    freezeFlg = false;
+                }
                 break;
             case "MyWeapon":
                 break;
             default:
-                Debug.LogError("このオブジェクトのtagは設定されていません["+ other.tag +"]");
+                Debug.LogError("このオブジェクトのtagは設定されていません[" + other.tag + "]");
                 break;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        itemFlg = false;
+        freezeFlg = false;
     }
 
     void OnGUI()
@@ -167,5 +206,28 @@ public class PlayerInput : MonoBehaviour
     void ButtonPush()
     {
         pushTime += Time.deltaTime;
+    }
+
+    public void PlayerDamage(int damage)
+    {
+        player_HP -= damage;
+        if (player_HP <= 0)
+        {
+            player_HP = 0;
+            gameObject.tag = "DownPlayer";
+        }
+        gauge_HP.rectTransform.localScale = new Vector2(player_HP / PLAYER_HPMAX, 1.0f);
+        GaugeColorChanger gcc = gauge_HP.GetComponent<GaugeColorChanger>();
+        gcc.ColorChange();
+    }
+
+    public void PlayerRecovery(int recoveryValue)
+    {
+        player_HP += recoveryValue;
+        if (player_HP > PLAYER_HPMAX)
+            player_HP = PLAYER_HPMAX;
+        gauge_HP.rectTransform.localScale = new Vector2(player_HP / PLAYER_HPMAX, 1.0f);
+        GaugeColorChanger gcc = gauge_HP.GetComponent<GaugeColorChanger>();
+        gcc.ColorChange();
     }
 }

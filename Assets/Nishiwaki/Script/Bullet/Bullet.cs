@@ -33,8 +33,8 @@ namespace Nishiwaki
             {
                 Debug.Log("弾当たったよ");
             }
-
-            Destroy(gameObject);
+            if(other.tag=="Enemy")
+                Destroy(gameObject);
         }
     }
 }

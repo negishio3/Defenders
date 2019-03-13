@@ -29,7 +29,10 @@ namespace Nishiwaki
                 ColorChangeBlue();
             }
             else if (other.gameObject.tag == "Ground")
-            { 
+            {
+                BoxCollider bc = gameObject.GetComponent<BoxCollider>();
+                bc.isTrigger = false;
+                gameObject.tag = "Weapon";
             }
         }
         private void OnTriggerExit(Collider other)
@@ -42,10 +45,12 @@ namespace Nishiwaki
         public void ColorChangeRed()
         {
             GetComponent<Renderer>().material.SetColor("_OutlineColor", Color.red);
+            GetComponent<Renderer>().material.SetColor("_Color", Color.white);
         }
         public void ColorChangeBlue()
         {
             GetComponent<Renderer>().material.SetColor("_OutlineColor", Color.blue);
+            GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
         }
     }
 }

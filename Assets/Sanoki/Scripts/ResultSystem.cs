@@ -34,6 +34,8 @@ public class ResultSystem : MonoBehaviour
     public GameObject resultPanel;// リザルトのパネル
     public GameObject rankingPnael;// ランキングのパネル
 
+    public GameObject titelePanel;
+
     public Color rankingColor;
 
     SceneFader sceneFader;
@@ -85,7 +87,7 @@ public class ResultSystem : MonoBehaviour
         }
         if (!isRanking && GamePad.GetButtonDown(GamePad.Button.Y, GamePad.Index.Any) && resultState == ResultState.RANKING)
         {
-            sceneFader.SceneChange("Entry");
+            sceneFader.SceneChange("Title");
         }
     }
 
@@ -203,6 +205,10 @@ public class ResultSystem : MonoBehaviour
         }
 
         DataReset();
+
+        yield return new WaitForSeconds(1.0f);
+
+        ActivStateChenge(titelePanel);
 
         isRanking = false;
     }

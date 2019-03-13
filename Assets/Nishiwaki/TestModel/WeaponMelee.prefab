@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2603715216517387967}
   - component: {fileID: 2603715216517387966}
   - component: {fileID: 2603715216517387961}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeaponMelee
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5330fc85ad6cd78499fbc7d1ff9b3b79, type: 2}
+  - {fileID: 2100000, guid: 730aa171a6701034b959d14687e0cdad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
