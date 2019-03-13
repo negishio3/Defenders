@@ -23,12 +23,30 @@ public class GameSystem : SingletonMonoBehaviour<GameSystem>
 
     public Text wave_Text; // ウェーブのテキスト
 
+    public GameObject wave_Obj;
+    bool waveFlg;
+
+    public GameObject[] playerPre;
+    public GameObject[] respawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
+        
+        for(int i = 0; i < EntrySystem.playerNumber.Length; i++)
+        {
+            if (EntrySystem.playerNumber[i] != -1)
+            {
+                Instantiate(playerPre[i], respawnPoint[i].transform.position, Quaternion.identity);
+            }
+        }
+        waveFlg = false;
+        
         timerColor = timer_Image.GetComponent<TimerColor>();// タイマーについているTimerColorコンポーネントを取得
         ResetOption();//設定を初期化
         sceneFader = FindObjectOfType<SceneFader>();// SceneFaderを取得
+        WaveCount();
+        Data.pauseFlg = false;
     }
 
     // Update is called once per frame
@@ -41,7 +59,7 @@ public class GameSystem : SingletonMonoBehaviour<GameSystem>
             GameOver();
 
         if (Input.GetKeyDown(KeyCode.Return))
-            ColonySystem.Instance.ColonyDamage(1000);
+            WaveCount();
     }
 
     /// <summary>
@@ -64,8 +82,13 @@ public class GameSystem : SingletonMonoBehaviour<GameSystem>
     /// </summary>
     public void WaveCount()
     {
+        if (waveFlg) return;
+        waveFlg = true;
         waveCout++;//ウェーブの加算
-        wave_Text.text = waveCout+"WAVE";//表示
+        //wave_Text.text = waveCout+"WAVE";//表示
+        wave_Obj.SetActive(true);
+        Text wavetext = wave_Obj.GetComponentInChildren<Text>();
+        wave_Text.text = wavetext.text = waveCout + "WAVE";//表示
     }
 
     /// <summary>
@@ -119,5 +142,10 @@ public class GameSystem : SingletonMonoBehaviour<GameSystem>
         count_Time = TIME_FULL;//制限時間のリセット
         timer_Text.text = "" + (int)count_Time;//制限時間の表示をリセット
         score_Text.text = "score:0";//スコアの表示をリセット
+    }
+
+    public void ChangeFlg()
+    {
+        waveFlg = false;
     }
 }

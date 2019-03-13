@@ -17,7 +17,8 @@ public class Test_Item : MonoBehaviour,I_Item
     }
     public void UseItem(PlayerInput _player)
     {
-        Debug.Log("アイテム使ったよ:" + gameObject.name);
+        //Debug.Log("アイテム使ったよ:" + gameObject.name);
+        _player.PlayerRecovery(300);
         Destroy(gameObject);
     }
 }

@@ -47,6 +47,7 @@ public class ColonySystem : SingletonMonoBehaviour<ColonySystem>
     /// <param name="recoveryValue">回復量</param>
     public void ColonyRecovery(int recoveryValue)
     {
+        Debug.Log("回復！");
         colony_HP += recoveryValue;//回復量分HPを回復
         if (colony_HP > Data.COLONY_VALUE_MAX) colony_HP = (int)Data.COLONY_VALUE_MAX;//最大値を超えたらHPを最大値に設定
         //Debug.Log(colony_HP /Data.COLONY_VALUE_MAX);

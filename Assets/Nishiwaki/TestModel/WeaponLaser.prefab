@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4775430178045642742}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LaserBulletMuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4775430178150745172}
   - component: {fileID: 4775430178150745171}
   - component: {fileID: 9105965555922939620}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LaserBulletHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,9 +150,9 @@ GameObject:
   - component: {fileID: 4775430179003309116}
   - component: {fileID: 4775430179003309115}
   - component: {fileID: 2678811831917746481}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeaponLaser
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5330fc85ad6cd78499fbc7d1ff9b3b79, type: 2}
+  - {fileID: 2100000, guid: 730aa171a6701034b959d14687e0cdad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
