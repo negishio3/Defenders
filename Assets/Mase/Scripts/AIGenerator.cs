@@ -10,15 +10,16 @@ public class AIGenerator : MonoBehaviour
     public float timeout;
     private int Counter;
     public bool Create;
-    private bool CountTimer;
-    public float CountTime;
+    //private bool CountTimer;
+    //public float CountTime;
+    public int CreateCount;
 
     // Start is called before the first frame update
     void Start()
     {
 
         Create = true;
-        CountTimer = false;
+        //CountTimer = false;
     }
 
     // Update is called once per frame
@@ -39,17 +40,22 @@ public class AIGenerator : MonoBehaviour
 
         }
 
-        if (Counter >= 10)
+        if (Counter >= CreateCount)
         {
             Create = false;
         }
 
-        if (CountTime >= 5)
-        {
-            CountTimer = true;
-        }
 
-        CountTime -= Time.deltaTime;
+        //if (GameSystem.Instance.)
+        //{
+
+        //}
+        //if (CountTime >= 5)
+        //{
+        //    CountTimer = true;
+        //}
+
+        //CountTime -= Time.deltaTime;
 
         Debug.Log(Counter);
         //Debug.Log(CountTime);
