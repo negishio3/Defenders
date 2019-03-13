@@ -40,7 +40,7 @@ namespace Nishiwaki
 
                 Debug.Log(power + "ダメージ");
             }
-<<<<<<< HEAD
+//<<<<<<< HEAD
         }
         private void OnTriggerStay(Collider other)
         {
@@ -50,7 +50,7 @@ namespace Nishiwaki
 
                 Debug.Log(power + "ダメージ");
             }
-=======
+
             //switch (ClassName)
             //{
             //    case "Laser":
@@ -62,7 +62,7 @@ namespace Nishiwaki
             //        Debug.LogError("書いてないよー");
             //        break;
             //}
->>>>>>> master
+//>>>>>>> master
         }
     }
 }

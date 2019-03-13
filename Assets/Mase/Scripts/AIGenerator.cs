@@ -8,28 +8,56 @@ public class AIGenerator : MonoBehaviour
     private float lastAttackTime;
     private float attackInterval = 1f;
     public float timeout;
+    private int Counter;
+    public bool Create;
+    //private bool CountTimer;
+    //public float CountTime;
+    public int CreateCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(EnemySummons());
+
+        Create = true;
+        //CountTimer = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > lastAttackTime + attackInterval)
+        if (Create)
         {
-            Instantiate(obj, (this.transform.position), Quaternion.identity);
+            if (Time.time > lastAttackTime + attackInterval)
+            {
+                Debug.Log("きた");
 
-            lastAttackTime = Time.time;
+                Instantiate(obj, (this.transform.position), Quaternion.identity);
+
+                lastAttackTime = Time.time;
+
+                Counter++;
+            }
+
         }
-    }
 
-    //AI召喚
-    IEnumerator EnemySummons()
-    {
+        if (Counter >= CreateCount)
+        {
+            Create = false;
+        }
 
-        yield return new WaitForSeconds(timeout);
+
+        //if (GameSystem.Instance.)
+        //{
+
+        //}
+        //if (CountTime >= 5)
+        //{
+        //    CountTimer = true;
+        //}
+
+        //CountTime -= Time.deltaTime;
+
+        Debug.Log(Counter);
+        //Debug.Log(CountTime);
     }
 }

@@ -793,6 +793,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 3915161754894261885, guid: a37b2c41712df4d44872dcfb9a3d871f, type: 3}
   timeout: 10
+  Create: 0
+  CreateCount: 20
 --- !u!4 &2093429293
 Transform:
   m_ObjectHideFlags: 0
